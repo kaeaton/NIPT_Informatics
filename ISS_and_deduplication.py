@@ -22,8 +22,8 @@ UMI_LENGTH = 8
 # Example: if you have 4 cores and 2 channels per core, you could run 8 threads,
 # but it will process faster if you use <= 6 threads and save one (or more) cores for running the system.
 # If your CPU is composed of higher and lower power cores (ARM architecture and some newer Intel CPUs)
-# it gets more complicated. Apple runs threads in groups of four, routing first to the high-powered cores,
-# so your number of threads should be a multiple of four.
+# it gets more complicated. Apple runs threads in groups of four, routing first to the high-powered cores
+# (also in groups of four), so your number of threads should be a multiple of four.
 NUMBER_OF_THREADS = 8
 
 # The reference genome used for alignment and deduplication. This has only been tested with hg19 and hg38.
@@ -39,7 +39,7 @@ for i in read_1_data_files:
     read_2 = Path(str(i).replace('R1', 'R2'))
     sample_id = str(os.path.basename(i)).split('_S')[0]
 
-    # create results folder for this sample
+    # create results folder (if not present)
     results_folder = Path("./results")
     if not os.path.isdir(results_folder):
         os.makedirs(results_folder)
